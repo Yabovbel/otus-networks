@@ -1,2 +1,2 @@
 # otus-networks
-home tasks on OTUS Network engineer. Autumn 2022
+homework on OTUS Network engineer. Autumn 2022
