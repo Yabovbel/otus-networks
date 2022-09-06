@@ -1,6 +1,7 @@
 # VLAN и маршрутизация между VLAN
 ## Физическая топология сети
 ![Физическая топология сети](https://github.com/Yabovbel/otus-networks/blob/eb48680cadafd564c81e685a6a20a5bd7fd28f7b/labs/%5Blab_01%5D%20VLAN%20%D0%B8%20%D0%BC%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BC%D0%B5%D0%B6%D0%B4%D1%83%20VLAN/pictures/otus-lab1.png "Физическая топология сети")
+
 ##Таблица адресации
 Addressing Table
 Device	| Interface	| IP Address	| Subnet Mask	| Default Gateway
