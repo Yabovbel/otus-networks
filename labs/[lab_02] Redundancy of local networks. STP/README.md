@@ -284,9 +284,9 @@ S3		| VLAN 1	| 192.168.1.3	| 255.255.255.0
 	S3(config-if)#spanning-tree vlan 1 cost 18
 	```
 	__Внимание!__  
-	__Данная в инструкции к лабораторной работе команда *spanning-tree cost 18* не работает в Cisco Packet Tracer 8.0.__  
+	__Данная в инструкции к лабораторной работе команда `spanning-tree cost 18` не работает в Cisco Packet Tracer 8.0.__  
 	__Для корректной работы следует указывать VLAN для которого задаем cost.__  
-	__Пример команды: *spanning-tree vlan 1 cost 18*__
+	__Пример команды: `spanning-tree vlan 1 cost 18`__
 	
 	* Вывод команды show spanning-tree c некорневых коммутаторов __S2__ и __S3__.
 		* Для __S2__
