@@ -1,0 +1,117 @@
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R1
+!
+!
+!
+enable password 7 0822404F1A0A
+!
+!
+ip dhcp excluded-address 192.168.1.1 192.168.1.5
+ip dhcp excluded-address 192.168.1.97 192.168.1.101
+!
+ip dhcp pool SUBNET_A
+ network 192.168.1.0 255.255.255.192
+ default-router 192.168.1.1
+ domain-name ccna-lab.com
+ lease 2 12 30
+ip dhcp pool R2_Client_LAN
+ network 192.168.1.96 255.255.255.240
+ default-router 192.168.1.97
+ domain-name ccna-lab.com
+ lease 2 12 30
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ description linkToR2
+ ip address 10.0.0.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ description trunkToS1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1.100
+ description ClientsVLAN
+ encapsulation dot1Q 100
+ ip address 192.168.1.1 255.255.255.192
+!
+interface GigabitEthernet0/0/1.200
+ description ManagementVLAN
+ encapsulation dot1Q 200
+ ip address 192.168.1.65 255.255.255.224
+!
+interface GigabitEthernet0/0/1.1000
+ description NativeVLAN
+ encapsulation dot1Q 1000 native
+ no ip address
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 192.168.1.96 255.255.255.240 10.0.0.2 
+!
+ip flow-export version 9
+!
+!
+!
+no cdp run
+!
+banner motd "Unauthorized access is prohibited"
+!
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ logging synchronous
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0822455D0A16
+ logging synchronous
+ login
+line vty 5 15
+ password 7 0822455D0A16
+ logging synchronous
+ login
+!
+!
+!
+end
+
