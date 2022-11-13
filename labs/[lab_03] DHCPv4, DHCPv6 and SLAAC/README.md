@@ -468,14 +468,13 @@ PC-B	| NIC		| DHCP			| DHCP
 			R2(config-if)#no sh
 			```
 	* Настраиваем статические маршруты на роутерах R1 и R2.
-		Всвязи с проблемой, описанной в пункте 4.3 первой части лабораторной работы [ссылка], вместо дефолтных прописываю маршруты до конкретных подсетей
-		Для R1
-			R1(config)#ipv6 route 2001:db8:acad:3::1/64 2001:db8:acad:2::2 
-		Для R2
-			R2(config)#ipv6 route 2001:db8:acad:1::1/64 2001:db8:acad:2::1
-	5. Проверка корректности настройки IPv6 адресов и статических маршрутов
-		a. Вывод команды show ipv6 int br
-			Для R1
+		В связи с проблемой, описанной в пункте 4.3 первой части лабораторной работы, вместо дефолтных прописываю маршруты до конкретных подсетей
+		* Для R1 `R1(config)#ipv6 route 2001:db8:acad:3::1/64 2001:db8:acad:2::2`
+		* Для R2 `R2(config)#ipv6 route 2001:db8:acad:1::1/64 2001:db8:acad:2::1`
+	* Проверка корректности настройки IPv6 адресов и статических маршрутов
+		* Вывод команды show ipv6 int br
+			* Для R1
+				```
 				R1#sh ipv6 int br
 				GigabitEthernet0/0/0       [up/up]
 					FE80::1
@@ -485,7 +484,9 @@ PC-B	| NIC		| DHCP			| DHCP
 					2001:DB8:ACAD:1::1
 				Vlan1                      [administratively down/down]
 					unassigned
-			Для R2
+				```
+			* Для R2
+				```
 				R2#sh ipv6 int br
 				GigabitEthernet0/0/0       [up/up]
 					FE80::2
@@ -494,9 +495,11 @@ PC-B	| NIC		| DHCP			| DHCP
 					FE80::1
 					2001:DB8:ACAD:3::1
 				Vlan1                      [administratively down/down]
-					unassigned	
-		b. Вывод команды show ipv6 route
-			Для R1
+					unassigned
+				```
+		* Вывод команды show ipv6 route
+			* Для R1
+				```
 				R1#sh ipv6 route 
 				IPv6 Routing Table - 6 entries
 				...
@@ -512,7 +515,9 @@ PC-B	| NIC		| DHCP			| DHCP
 					 via 2001:DB8:ACAD:2::2
 				L   FF00::/8 [0/0]
 					 via Null0, receive
-			Для R2
+				```
+			* Для R2
+				```
 				R2#sh ipv6 route 
 				IPv6 Routing Table - 6 entries
 				...
@@ -528,15 +533,19 @@ PC-B	| NIC		| DHCP			| DHCP
 					 via GigabitEthernet0/0/1, receive
 				L   FF00::/8 [0/0]
 					 via Null0, receive
-	4. Проверка корректности настройки IPv6 эхо-запросом с роутера R1 на адрес интерфейса G0/0/1 роутера R2.
+				```
+	* Проверка корректности настройки IPv6 эхо-запросом с роутера R1 на адрес интерфейса G0/0/1 роутера R2.
+		```
 		R1#ping 2001:db8:acad:3::1
 		Type escape sequence to abort.
 		Sending 5, 100-byte ICMP Echos to 2001:db8:acad:3::1, timeout is 2 seconds:
 		!!!!!
 		Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
-	5. Сохраняем текущую конфигурацию в NVRAM с помощью команды S1#cop run sta
+		```
+	* Сохраняем текущую конфигурацию в NVRAM с помощью команды S1#cop run sta
 3. __Проверка работоспособности SLAAC__
-	1. Выполняем команду ipconfig /all с компьютера PC-A
+	* Выполняем команду ipconfig /all с компьютера PC-A
+		```
 		C:\>ipconfig /all
 
 		FastEthernet0 Connection:(default port)
@@ -555,22 +564,28 @@ PC-B	| NIC		| DHCP			| DHCP
 		   DNS Servers.....................: ::
 											 0.0.0.0
 		...
-	2. Идентификатор хоста был сформирован на основе MAC- адреса сетевого интерфейса компьютера PC-A по алгоритму EUI-64
+		```
+	* Идентификатор хоста был сформирован на основе MAC- адреса сетевого интерфейса компьютера PC-A по алгоритму EUI-64
 		MAC-адрес сетевого интерфейса компьютера PC-A: 0001.C7B4.8173
 		![Генерация IPv6 адреса по алгориму EUI-64](/labs/%5Blab_03%5D%20DHCPv4,%20DHCPv6%20and%20SLAAC/pictures/lab3-otus-1.png "Генерация IPv6 адреса по алгориму EUI-64")
 4. __Настройка и проверка stateless DHCPv6 сервера на роутере R1__
 	На данный момент компьютер не получает от DHCPv6 сервера unicast адреса DNS серверов.
-	1. Создаем DHCP пул с именем R1-STATELESS. В нем указываем адрес DNS сервера и имя домена.
+	* Создаем DHCP пул с именем R1-STATELESS. В нем указываем адрес DNS сервера и имя домена.
+		```
 		R1(config)#ipv6 dhcp pool R1-STATELESS
 		R1(config-dhcpv6)#dns-server 2001:db8:acad::254
 		R1(config-dhcpv6)#domain-name STATELESS.com
-	2. Привязываем пул DHCPv6 сервера к интерфейсу G0/0/1. Устанавливаем флаг "O" в единицу, который указывается,
+		```
+	* Привязываем пул DHCPv6 сервера к интерфейсу G0/0/1. Устанавливаем флаг "O" в единицу, который указывается,
 	что адреса получаются через SLAAC, а прочая информация (адреса DNS) получаются от DHCP сервера.
+		```
 		R1(config)#int g0/0/1
 		R1(config-if)#ipv6 nd other-config-flag 
 		R1(config-if)#ipv6 dhcp server R1-STATELESS
-	3. Сохраняем текущую конфигурацию в NVRAM с помощью команды S1#cop run sta
-	4. Перезагружаем компьютер PC-A и выполняем команду ipconfig /all
+		```
+	* Сохраняем текущую конфигурацию в NVRAM с помощью команды S1#cop run sta
+	* Перезагружаем компьютер PC-A и выполняем команду ipconfig /all
+		```
 		C:\>ipconfig /all
 		FastEthernet0 Connection:(default port)
 		   Connection-specific DNS Suffix..: 
@@ -580,14 +595,16 @@ PC-B	| NIC		| DHCP			| DHCP
 		   IPv4 Address....................: 0.0.0.0
 		   Subnet Mask.....................: 0.0.0.0
 		   Default Gateway.................: FE80::1
-											 0.0.0.0
+						     0.0.0.0
 		   DHCP Servers....................: 0.0.0.0
 		   DHCPv6 IAID.....................: 
 		   DHCPv6 Client DUID..............: 00-01-00-01-A6-37-40-2C-00-01-C7-B4-81-73
 		   DNS Servers.....................: 2001:DB8:ACAD::254
-											 0.0.0.0
+						     0.0.0.0
+		```
 		Наблюдаем, что компьютер получил по DHCPv6 адрес DNS-сервера.
-	5. Проверяем прохождение ping запроса на адрес интерфейса G0/0/1 на роутере R2
+	* Проверяем прохождение ping запроса на адрес интерфейса G0/0/1 на роутере R2
+		```
 		C:\>ping 2001:DB8:ACAD:3::1
 
 		Pinging 2001:DB8:ACAD:3::1 with 32 bytes of data:
@@ -601,18 +618,24 @@ PC-B	| NIC		| DHCP			| DHCP
 			Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
 		Approximate round trip times in milli-seconds:
 			Minimum = 0ms, Maximum = 0ms, Average = 0ms
+		```
 5. __Конфигурирование stateful DHCPv6 сервера на роутере R1__
-	1. Создаем DHCP пул с именем R2-STATEFUL. В нем указываем префикс адреса диапазона, из которого будут выдываться IP-адреса (2001:db8:acad:3:aaa::/80).
+	* Создаем DHCP пул с именем R2-STATEFUL. В нем указываем префикс адреса диапазона, из которого будут выдываться IP-адреса (2001:db8:acad:3:aaa::/80).
 	Также указывается адрес DNS сервера и имя домена.
+		```
 		R1(config)# ipv6 dhcp pool R2-STATEFUL
 		R1(config-dhcp)# address prefix 2001:db8:acad:3:aaa::/80
 		R1(config-dhcp)# dns-server 2001:db8:acad:3::254
 		R1(config-dhcp)# domain-name STATEFUL.com
-	2. Привязываем пул DHCPv6 сервера к интерфейсу G0/0/0, чтобы он был доступен для DHCP Relay с роутера R2.
+		```
+	* Привязываем пул DHCPv6 сервера к интерфейсу G0/0/0, чтобы он был доступен для DHCP Relay с роутера R2.
+		```
 		R1(config)# interface g0/0/0
 		R1(config-if)# ipv6 dhcp server R2-STATEFUL
+		```
 6. __Настройка и проверка DHCPv6 Relay на роутере R2__
-	1. Выполняем команду ipconfig /all с компьютера PC-B
+	* Выполняем команду ipconfig /all с компьютера PC-B
+		```
 		C:\>ipconfig /all
 		FastEthernet0 Connection:(default port)
 		   Connection-specific DNS Suffix..: 
@@ -622,22 +645,26 @@ PC-B	| NIC		| DHCP			| DHCP
 		   IPv4 Address....................: 0.0.0.0
 		   Subnet Mask.....................: 0.0.0.0
 		   Default Gateway.................: FE80::1
-											 0.0.0.0
+						     0.0.0.0
 		   DHCP Servers....................: 0.0.0.0
 		   DHCPv6 IAID.....................: 
 		   DHCPv6 Client DUID..............: 00-01-00-01-45-08-A1-47-00-0C-CF-00-BA-A1
 		   DNS Servers.....................: ::
-											 0.0.0.0
+						     0.0.0.0
+		```
 		Префикс 2001:db8:acad:3:: был получен с помощью SLAAC, так как на интерфейсе роутера данного широковещательного домена настроен IP адрес 2001:DB8:ACAD:3::1
-	--------------------------------------------------------
+	---
 	Оставшаяся часть лабораторной работы выполнялась в EVE-NG, так как в Packet Tracer 8.0 недоступен функционал DHCPv6 relay. В качестве DHCPv6 клиента использован образ Cisco IOL L2
-	--------------------------------------------------------
-	2. Настройка DHCP Relay на роутере R2 для интерфейса G0/0/1.
-		a. Для интерфейса G0/0/1 указываем "M" флаг и указываем адрес роутера R1 в качестве назначения для пересылки DHCPv6 пакетов
+	---
+	* Настройка DHCP Relay на роутере R2 для интерфейса G0/0/1.
+		Для интерфейса G0/0/1 указываем "M" флаг и указываем адрес роутера R1 в качестве назначения для пересылки DHCPv6 пакетов
+		```
 		R2(config)# interface g0/0/1
 		R2(config-if)# ipv6 nd managed-config-flag
 		R2(config-if)# ipv6 dhcp relay destination 2001:db8:acad:2::1 g0/0/0
-	3. Проверка получения конфигурации по DHCPv6 клиентом
+		```
+	* Проверка получения конфигурации по DHCPv6 клиентом
+		```
 		SW6(config)#int vl 1
 		SW6(config-if)#ipv6 enable
 		SW6(config-if)#ipv6 address dhcp
@@ -660,3 +687,4 @@ PC-B	| NIC		| DHCP			| DHCP
 			  Information refresh time: 0
 		  Prefix Rapid-Commit: disabled
 		  Address Rapid-Commit: disabled
+		```
