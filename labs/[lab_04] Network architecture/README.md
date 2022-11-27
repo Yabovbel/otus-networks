@@ -197,27 +197,21 @@
 #	172.16.0.40-172.16.255.255 - Vacant
 # 172.17.0.0-172.31.255.255 - Vacant
 # 192.168.0.0-192.168.255.255 - Vacant
-
+```
 # План адресации IPv6
 ```diff
-10.0.0.0/16 - Moscow AS1001
-	10.0.0.0/17 - Clients
-		10.0.0.0/24 - VLAN 100 (VPC1)
-			10.0.0.1 - Gateway / HSRP
-#			10.0.0.2-10.0.0.9 - Vacant
-			10.0.0.10 - VPC1
-#			10.0.0.11-10.0.0.252 - Vacant
-			10.0.0.253 - SW4 e0/0.100
-			10.0.0.254 - SW5 e0/0.100
-		10.0.1.0/24 - VLAN 110 (VPC7)
-			10.0.1.1 - Gateway / HSRP
-#			10.0.1.2-10.0.1.9 - Vacant
-			10.0.1.10 - VPC7
-#			10.0.1.11-10.0.1.252 - Vacant
-			10.0.1.253 - SW4 e0/0.110
-			10.0.1.254 - SW5 e0/0.110
-#		10.0.2.0-10.0.127.255 - Vacant
-#	10.0.128.0-10.0.239.255 - Vacant
+2ccc:0:3e9::/48 - Moscow AS1001
+	2ccc:0:3e9::/49 - Clients
+		2ccc:0:3e9::/64 - VLAN 100 (VPC1)
+			2ccc:0:3e9::1 - Gateway / HSRP
+			2ccc:0:3e9::a - VPC1
+			2ccc:0:3e9:0:ffff::1 - SW4 e0/0.100
+			2ccc:0:3e9:0:ffff::2 - SW5 e0/0.100
+		2ccc:0:3e9:1::/64 - VLAN 110 (VPC7)
+			2ccc:0:3e9:1::1 - Gateway / HSRP
+			2ccc:0:3e9:1::a - VPC7
+			2ccc:0:3e9:1:ffff::1 - SW4 e0/0.110
+			2ccc:0:3e9:1:ffff::2 - SW5 e0/0.110
 	2ccc:0:3e9:fff0::/60 - Network needs
 		2ccc:0:3e9:fffd::/64 - PtP links between routers
 			2ccc:0:3e9:fffe::/126 - R12 - SW4
@@ -235,12 +229,11 @@
 			2ccc:0:3e9:fffe::c:0/126 - R15 - R20
 			2ccc:0:3e9:fffe::d:0/126 - R15 - R19
 		2ccc:0:3e9:fffe::/64 - MGMT VLAN
-			10.0.254.1 - Gateway / HSRP
-			10.0.254.2 - SW2 SVI
-			10.0.254.3 - SW3 SVI
-#			10.0.254.4-10.0.254.252 - Vacant
-			10.0.254.253 - SW4 e0/0.10
-			10.0.254.254 - SW5 e0/0.10
+			2ccc:0:3e9:fffe::1 - Gateway / HSRP
+			2ccc:0:3e9:fffe::2 - SW2 SVI
+			2ccc:0:3e9:fffe::3 - SW3 SVI
+			2ccc:0:3e9:fffe:ffff::1 - SW4 e0/0.10
+			2ccc:0:3e9:fffe:ffff::2 - SW5 e0/0.10
 		2ccc:0:3e9:ffff::/64 - Loopback interfaces
 			2ccc:0:3e9:ffff::12/128 - R12 lo
 			2ccc:0:3e9:ffff::13/128 - R13 lo
@@ -251,22 +244,14 @@
 			2ccc:0:3e9:ffff::104/128 - SW4 lo
 			2ccc:0:3e9:ffff::105/128 - SW5 lo
 
-10.1.0.0/18 - Kitorn AS101
-#	10.1.0.0-10.1.61.255 - Vacant
-	10.1.56.0/21 - Network needs
-#		10.1.56.0-10.1.62.255-Vacant
-		10.1.63.0/24 - Loopback interfaces
-#			10.1.63.0-10.1.63.21 - Vacant
-			10.1.63.22/32 - R22 lo
-#			10.1.63.23-10.1.63.255 - Vacant
-10.1.64.0/18 - Lamas AS301
-#	10.1.64.0-10.1.125.255 - Vacant
-	10.1.120.0/21 - Network needs
-#		10.1.120.0-10.1.126.255 - Vacant
+2ccc:0:65::/48 - Kitorn AS101
+	2ccc:0:65:fff0::/60 - Network needs
+		2ccc:0:65:ffff::/64 - Loopback interfaces
+			2ccc:0:65:ffff::22/128 - R22 lo
+2ccc:0:12d::/48 - Lamas AS301
+	2ccc:0:12d:fff0::/60 - Network needs
 		10.1.127.0/24 - Loopback interfaces
-#			10.1.127.0-10.1.127.20 - Vacant
 			10.1.127.21/32 - R21 lo
-#			10.1.127.22-10.1.127.255 - Vacant
 10.1.128.0/18 - Chokurdah
 	10.1.128.0/19 - Clients
 		10.1.128.0/24 - VLAN 100 (VPC30)
