@@ -214,20 +214,20 @@
 			2ccc:0:3e9:1:ffff::2 - SW5 e0/0.110
 	2ccc:0:3e9:fff0::/60 - Network needs
 		2ccc:0:3e9:fffd::/64 - PtP links between routers
-			2ccc:0:3e9:fffe::/126 - R12 - SW4
-			2ccc:0:3e9:fffe::1:0/126 - R13 - SW4
-			2ccc:0:3e9:fffe::2:0/126 - R12 - R13
-			2ccc:0:3e9:fffe::3:0/126 - R13 - SW5
-			2ccc:0:3e9:fffe::4:0/126 - R12 - SW5
-			2ccc:0:3e9:fffe::5:0/126 - R14 - R12
-			2ccc:0:3e9:fffe::6:0/126 - R14 - R13
-			2ccc:0:3e9:fffe::7:0/126 - R14 - R19
-			2ccc:0:3e9:fffe::8:0/126 - R14 - R15
-			2ccc:0:3e9:fffe::9:0/126 - R14 - R20
-			2ccc:0:3e9:fffe::a:0/126 - R15 - R13
-			2ccc:0:3e9:fffe::b:0/126 - R15 - R12
-			2ccc:0:3e9:fffe::c:0/126 - R15 - R20
-			2ccc:0:3e9:fffe::d:0/126 - R15 - R19
+			2ccc:0:3e9:fffd::/126 - R12 - SW4
+			2ccc:0:3e9:fffd::1:0/126 - R13 - SW4
+			2ccc:0:3e9:fffd::2:0/126 - R12 - R13
+			2ccc:0:3e9:fffd::3:0/126 - R13 - SW5
+			2ccc:0:3e9:fffd::4:0/126 - R12 - SW5
+			2ccc:0:3e9:fffd::5:0/126 - R14 - R12
+			2ccc:0:3e9:fffd::6:0/126 - R14 - R13
+			2ccc:0:3e9:fffd::7:0/126 - R14 - R19
+			2ccc:0:3e9:fffd::8:0/126 - R14 - R15
+			2ccc:0:3e9:fffd::9:0/126 - R14 - R20
+			2ccc:0:3e9:fffd::a:0/126 - R15 - R13
+			2ccc:0:3e9:fffd::b:0/126 - R15 - R12
+			2ccc:0:3e9:fffd::c:0/126 - R15 - R20
+			2ccc:0:3e9:fffd::d:0/126 - R15 - R19
 		2ccc:0:3e9:fffe::/64 - MGMT VLAN
 			2ccc:0:3e9:fffe::1 - Gateway / HSRP
 			2ccc:0:3e9:fffe::2 - SW2 SVI
@@ -250,58 +250,38 @@
 			2ccc:0:65:ffff::22/128 - R22 lo
 2ccc:0:12d::/48 - Lamas AS301
 	2ccc:0:12d:fff0::/60 - Network needs
-		10.1.127.0/24 - Loopback interfaces
-			10.1.127.21/32 - R21 lo
-10.1.128.0/18 - Chokurdah
-	10.1.128.0/19 - Clients
-		10.1.128.0/24 - VLAN 100 (VPC30)
-			10.1.128.1 - Gateway
-#			10.1.128.2-10.1.128.9 - Vacant
-			10.1.128.10 - VPC30
-#			10.1.128.11-10.1.128.254 - Vacant
-		10.1.129.0/24 - VLAN 110 (VPC31)
-			10.1.129.1 - Gateway
-#			10.1.129.2-10.1.129.9 - Vacant
-			10.1.129.10 - VPC31
-#			10.1.129.11-10.1.129.254 - Vacant
-#		10.1.130.0-10.1.159.255 - Vacant
-#	10.1.160.0-10.1.189.255 - Vacant
-	10.1.184.0/21 - Network needs
-#		10.1.184.0-10.1.189.255 - Vacant
-		10.1.190.0/24 MGMT VLAN
-			10.1.190.1 - Gateway
-#			10.1.190.2-10.1.190.28 - Vacant
-			10.1.190.29 - SW29 SVI
-#			10.1.190.30-10.1.190.254 - Vacant
-		10.1.191.0/24 - Loopback interfaces
-#			10.1.127.0-10.1.127.20 - Vacant
-			10.1.127.21/32 - R28 lo
-#			10.1.127.22-10.1.127.255 - Vacant
-10.1.192.0/18 - Labitnangi
-#	10.1.192.0-10.1.253.255 - Vacant
-	10.1.248.0/21 - Network needs
-#		10.1.248.0-10.1.254.255 - Vacant
-		10.1.255.0/24 - Loopback interfaces
-#			10.1.255.0-10.1.255.26 - Vacant
-			10.1.127.27/32 - R27 lo
-#			10.1.255.28-10.1.255.255 - Vacant
-10.2.0.0/16 - Triada AS520
-#	10.2.0.0-10.2.239.255 - Vacant
-	10.2.240.0/20 - Network needs
-		10.2.240.0/21 - PtP links between routers
-			10.2.240.0/30 - R23 - R25
-			10.2.240.4/30 - R23 - R24
-			10.2.240.8/30 - R24 - R26
-			10.2.240.12/30 - R25 - R26
-#			10.2.240.16-10.2.247.255 - Vacant
-#		10.0.248.0-10.0.255.255 - Vacant
-		10.0.255.0/24 - Loopback interfaces
-#			10.2.255.0-10.2.255.22 - Vacant
-			10.2.255.23/32 - R23 lo
-			10.2.255.24/32 - R24 lo
-			10.2.255.25/32 - R25 lo
-			10.2.255.26/32 - R26 lo
-#			10.2.255.27-10.2.255.255 - Vacant
+		2ccc:0:12d:ffff::/64 - Loopback interfaces
+			2ccc:0:12d:ffff::21/128 - R21 lo
+2ccc:0:f000::/48 - Chokurdah
+	2ccc:0:f000::/49 - Clients
+		2ccc:0:f000::/64 - VLAN 100 (VPC30)
+			2ccc:0:f000::1/64 - Gateway
+			2ccc:0:f000::a/64 - VPC30
+		2ccc:0:f000:1::/64 - VLAN 110 (VPC31)
+			2ccc:0:f000:1::1/64 - Gateway
+			2ccc:0:f000:1::a/64 - VPC31
+	2ccc:0:f000:fff0::/60 - Network needs
+		2ccc:0:f000:fffe::/64 - MGMT VLAN
+			2ccc:0:f000:fffe::1 - Gateway
+			2ccc:0:f000:fffe::29 - SW29 SVI
+		2ccc:0:f000:ffff::/64 - Loopback interfaces
+			2ccc:0:f000:ffff::28/128 - R28 lo
+2ccc:0:f001::/48 - Labitnangi
+	2ccc:0:f001:fff0::/60 - Network needs
+		2ccc:0:f001:ffff::/64 - Loopback interfaces
+			2ccc:0:f001:ffff::27/128 - R27 lo
+2ccc:0:208::/48 - Triada AS520
+	2ccc:0:208:fff0::/60 - Network needs
+		2ccc:0:208:fffd::/64 - PtP links between routers
+			2ccc:0:208:fffd::/126 - R23 - R25
+			2ccc:0:208:fffd::1:0/126 - R23 - R24
+			2ccc:0:208:fffd::2:0/126 - R24 - R26
+			2ccc:0:208:fffd::3:0/126 - R25 - R26
+		2ccc:0:208:ffff::/64 - Loopback interfaces
+			2ccc:0:208:ffff::23/128 - R23 lo
+			2ccc:0:208:ffff::24/128 - R24 lo
+			2ccc:0:208:ffff::25/128 - R25 lo
+			2ccc:0:208:ffff::26/128 - R26 lo
 10.3.0.0/16 - St.-Petersburg AS2042
 	10.3.0.0/17 - Clients
 		10.3.0.0/24 - VLAN 100 (VPC8)
