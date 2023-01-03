@@ -198,6 +198,7 @@
 # 172.17.0.0-172.31.255.255 - Vacant
 # 192.168.0.0-192.168.255.255 - Vacant
 ```
+
 # План адресации IPv6
 ```diff
 2ccc:0:3e9::/48 - Moscow AS1001
@@ -243,7 +244,6 @@
 			2ccc:0:3e9:ffff::20/128 - R20 lo
 			2ccc:0:3e9:ffff::104/128 - SW4 lo
 			2ccc:0:3e9:ffff::105/128 - SW5 lo
-
 2ccc:0:65::/48 - Kitorn AS101
 	2ccc:0:65:fff0::/60 - Network needs
 		2ccc:0:65:ffff::/64 - Loopback interfaces
@@ -255,11 +255,11 @@
 2ccc:0:f000::/48 - Chokurdah
 	2ccc:0:f000::/49 - Clients
 		2ccc:0:f000::/64 - VLAN 100 (VPC30)
-			2ccc:0:f000::1/64 - Gateway
-			2ccc:0:f000::a/64 - VPC30
+			2ccc:0:f000::1 - Gateway
+			2ccc:0:f000::a - VPC30
 		2ccc:0:f000:1::/64 - VLAN 110 (VPC31)
-			2ccc:0:f000:1::1/64 - Gateway
-			2ccc:0:f000:1::a/64 - VPC31
+			2ccc:0:f000:1::1 - Gateway
+			2ccc:0:f000:1::a - VPC31
 	2ccc:0:f000:fff0::/60 - Network needs
 		2ccc:0:f000:fffe::/64 - MGMT VLAN
 			2ccc:0:f000:fffe::1 - Gateway
@@ -282,49 +282,35 @@
 			2ccc:0:208:ffff::24/128 - R24 lo
 			2ccc:0:208:ffff::25/128 - R25 lo
 			2ccc:0:208:ffff::26/128 - R26 lo
-10.3.0.0/16 - St.-Petersburg AS2042
-	10.3.0.0/17 - Clients
-		10.3.0.0/24 - VLAN 100 (VPC8)
-			10.3.0.1 - Gateway / HSRP
-#			10.3.0.2-10.3.0.9 - Vacant
-			10.3.0.10 - VPC8
-#			10.3.0.11-10.3.0.252 - Vacant
-			10.3.0.253 - R16 e0/0.100
-			10.3.0.254 - R17 e0/0.100
-		10.3.1.0/24 - VLAN 110 (VPC)
-			10.3.1.1 - Gateway / HSRP
-#			10.3.1.2-10.3.1.9 - Vacant
-			10.3.1.10 - VPC
-#			10.3.1.11-10.3.1.252 - Vacant
-			10.3.1.253 - R16 e0/0.110
-			10.3.1.254 - R17 e0/0.110
-#		10.3.2.0-10.3.127.255 - Vacant
-#	10.3.128.0-10.3.239.255 - Vacant
-	10.3.240.0/20 - Network needs
-		10.3.240.0/21 - PtP links between routers
-			10.3.240.0/30 - R18 - R18
-			10.3.240.4/30 - R18 - R17
-			10.3.240.8/30 - R16 - R32
-			10.3.240.12/32 - R17 - R32
-#			10.3.240.16-10.3.247.255 - Vacant
-#		10.3.248.0-10.3.253.255 - Vacant
-		10.3.254.0/24 - MGMT VLAN
-			10.3.254.1 - Gateway / HSRP
-#			10.3.254.2-10.3.254.8 - Vacant
-			10.3.254.9 - SW9 SVI
-			10.3.254.10 - SW10 SVI
-#			10.3.254.11-10.3.254.252 - Vacant
-			10.3.254.253 - R16 e0/0.10
-			10.3.254.254 - R17 e0/0.10
-		10.3.255.0/24 - Loopback interfaces
-#			10.3.255.0-10.3.255.15 - Vacant
-			10.3.255.16/32 - R16 lo
-			10.3.255.17/32 - R17 lo
-			10.3.255.18/32 - R18 lo
-#			10.3.255.19-10.3.255.31 - Vacant
-			10.3.255.32/32 - R32 lo
-#			10.3.255.33-10.3.255.255 – Vacant
-# 10.4.0.0-10.255.255.255 - Vacant
+2ccc:0:7fa::/48 - St.-Petersburg AS2042
+	2ccc:0:7fa::/49 - Clients
+		2ccc:0:7fa::/64 - VLAN 100 (VPC8)
+			2ccc:0:7fa::1 - Gateway / HSRP
+			2ccc:0:7fa::a - VPC8
+			2ccc:0:7fa:ffff::1 - R16 e0/0.100
+			2ccc:0:7fa:ffff::2 - R17 e0/0.100
+		2ccc:0:7fa:1::/64 - VLAN 110 (VPC)
+			2ccc:0:7fa:1::1 - Gateway / HSRP
+			2ccc:0:7fa:1::a - VPC
+			2ccc:0:7fa:1:ffff::1 - R16 e0/0.110
+			2ccc:0:7fa:1:ffff::2 - R17 e0/0.110
+	2ccc:0:7fa:fff0::/60 - Network needs
+		2ccc:0:7fa:fffd::/64 - PtP links between routers
+			2ccc:0:7fa:fffd::/126 - R18 - R18
+			2ccc:0:7fa:fffd::1:0/126 - R18 - R17
+			2ccc:0:7fa:fffd::2:0/126 - R16 - R32
+			2ccc:0:7fa:fffd::3:0/126 - R17 - R32
+		2ccc:0:7fa:fffe::/64 - MGMT VLAN
+			2ccc:0:7fa:fffe::1 - Gateway / HSRP
+			2ccc:0:7fa:fffe::2 - SW9 SVI
+			2ccc:0:7fa:fffe::3 - SW10 SVI
+			2ccc:0:7fa:fffe:ffff::1 - R16 e0/0.10
+			2ccc:0:7fa:fffe:ffff::2 - R17 e0/0.10
+		2ccc:0:7fa:ffff::/64 - Loopback interfaces
+			2ccc:0:7fa:ffff::16/128 - R16 lo
+			2ccc:0:7fa:ffff::17/128 - R17 lo
+			2ccc:0:7fa:ffff::18/128 - R18 lo
+			2ccc:0:7fa:ffff::32/128 - R32 lo
 172.16.0.0/16 - PtP links between locations
 	172.16.0.0/30 - Lamas R21 - Moscow R15
 	172.16.0.4/30 - Kitorn R22 - Moscow R14
@@ -336,7 +322,4 @@
 	172.16.0.28/30 - Triada R25 - Labitnangi R27
 	172.16.0.32/30 - Triada R25 - Chokurdah R28
 	172.16.0.36/30 - Triada R26 - Chokurdah R28
-#	172.16.0.40-172.16.255.255 - Vacant
-# 172.17.0.0-172.31.255.255 - Vacant
-# 192.168.0.0-192.168.255.255 - Vacant
 
