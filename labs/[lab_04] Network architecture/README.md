@@ -160,7 +160,7 @@
 #	10.3.128.0-10.3.239.255 - Vacant
 	10.3.240.0/20 - Network needs
 		10.3.240.0/21 - PtP links between routers
-			10.3.240.0/30 - R18 - R18
+			10.3.240.0/30 - R18 - R16
 			10.3.240.4/30 - R18 - R17
 			10.3.240.8/30 - R16 - R32
 			10.3.240.12/32 - R17 - R32
@@ -296,7 +296,7 @@
 			2ccc:0:7fa:1:ffff::2 - R17 e0/0.110
 	2ccc:0:7fa:fff0::/60 - Network needs
 		2ccc:0:7fa:fffd::/64 - PtP links between routers
-			2ccc:0:7fa:fffd::/126 - R18 - R18
+			2ccc:0:7fa:fffd::/126 - R18 - R16
 			2ccc:0:7fa:fffd::1:0/126 - R18 - R17
 			2ccc:0:7fa:fffd::2:0/126 - R16 - R32
 			2ccc:0:7fa:fffd::3:0/126 - R17 - R32
