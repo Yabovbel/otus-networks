@@ -291,8 +291,8 @@
 		2ccc:0:7fa::/64 - VLAN 100 (VPC8)
 			2ccc:0:7fa::1 - Gateway / HSRP
 			2ccc:0:7fa::a - VPC8
-			2ccc:0:7fa:ffff::1 - R16 e0/0.100
-			2ccc:0:7fa:ffff::2 - R17 e0/0.100
+			2ccc:0:7fa:0:ffff::1 - R16 e0/0.100
+			2ccc:0:7fa:0:ffff::2 - R17 e0/0.100
 		2ccc:0:7fa:1::/64 - VLAN 110 (VPC)
 			2ccc:0:7fa:1::1 - Gateway / HSRP
 			2ccc:0:7fa:1::a - VPC
